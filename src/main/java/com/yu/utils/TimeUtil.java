@@ -1,3 +1,4 @@
+package com.yu.utils;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -9,9 +10,9 @@ import java.util.regex.PatternSyntaxException;
 
 /**
  * Created By Yu On 2018/5/11
- * Description：
+ * Description：时间转换工具类
  **/
-public class timeUtil {
+public class TimeUtil {
     public static void main(String[] args) throws Exception {
         Instant instant = Instant.now();
         System.out.println(instant);
@@ -19,21 +20,10 @@ public class timeUtil {
     }
 
     // 将构造器私有化
-    private timeUtil() {
+    private TimeUtil() {
     }
 
-    /**
-     * 验证手机号
-     *
-     * @param str 手机号
-     * @return 手机号正确, true, 手机号不正确 false
-     */
-    public static boolean isChinaPhoneLegal(String str) {
-        String regExp = "^((13[0-9])|(14[5,7])|(15[^4,\\D])|(17[6-8])|(18[0-9]))\\d{8}$";
-        Pattern p = Pattern.compile(regExp);
-        Matcher m = p.matcher(str);
-        return m.matches();
-    }
+
 
     /**
      * 验证时间是否为 yyyy/MM/dd
