@@ -1,5 +1,8 @@
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -8,9 +11,15 @@ import java.util.regex.PatternSyntaxException;
  * Created By Yu On 2018/5/11
  * Description：
  **/
-public class tes {
+public class timeUtil {
     public static void main(String[] args) throws Exception {
-        System.out.println(1);
+        Instant instant = Instant.now();
+        System.out.println(instant);
+
+    }
+
+    // 将构造器私有化
+    private timeUtil() {
     }
 
     /**
@@ -39,5 +48,24 @@ public class tes {
         return m.matches();
     }
 
+    /**
+     * 毫秒数转localDateTime
+     * @param timeStamp 时间戳
+     * @return
+     */
+    public static LocalDateTime getLocalDateTimeFromTimeStamp(Long timeStamp) {
+        if (timeStamp <= 0)
+            return null;
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp), ZoneId.systemDefault());
+    }
+
+    /**
+     * 获取毫秒数
+     * @param localDateTime localDateTime
+     * @return 毫秒数
+     */
+    public static Long getTimeStampFromLocalDateTime(LocalDateTime localDateTime) {
+        return localDateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+    }
 
 }
